@@ -34,6 +34,11 @@ public class Wizard {
   @JoinColumn(name = "house_id")
   private House house;
 
+  public Wizard(String firstName, String lastName) {
+    this.firstName = firstName;
+    this.lastName = lastName;
+  }
+
   public Wizard(WizardDto wizardDto, House house) {
     this.firstName = wizardDto.firstName();
     this.lastName = wizardDto.lastName();
