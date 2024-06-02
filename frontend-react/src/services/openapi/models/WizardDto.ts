@@ -3,8 +3,8 @@
 /* tslint:disable */
 /* eslint-disable */
 export type WizardDto = {
-	id?: string
-	firstName?: string
-	lastName?: string
-	house?: string
+  id?: string
+  firstName?: string
+  lastName?: string
+  house?: string
 }

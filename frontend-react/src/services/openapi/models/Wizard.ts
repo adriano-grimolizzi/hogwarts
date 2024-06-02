@@ -4,8 +4,8 @@
 /* eslint-disable */
 import type { House } from "./House"
 export type Wizard = {
-	id?: string
-	firstName?: string
-	lastName?: string
-	house?: House
+  id?: string
+  firstName?: string
+  lastName?: string
+  house?: House
 }

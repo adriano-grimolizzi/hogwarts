@@ -3,6 +3,6 @@
 /* tslint:disable */
 /* eslint-disable */
 export type House = {
-	id?: string
-	name?: string
+  id?: string
+  name?: string
 }
