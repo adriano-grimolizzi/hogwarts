@@ -34,7 +34,7 @@ public class WizardControllerTests {
 
   private final ArgumentCaptor<WizardDto> argumentCaptor = ArgumentCaptor.forClass(WizardDto.class);
 
-  private static final House gryffindor = new House("Gryffindor");
+  private static final House gryffindor = new House(null, "Gryffindor", null);
   private static final Wizard harry = new Wizard(UUID.randomUUID(), "Harry", "Potter", gryffindor);
   private static final Wizard ron = new Wizard(UUID.randomUUID(), "Ronald", "Weasley", gryffindor);
 

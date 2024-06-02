@@ -1,5 +1,6 @@
 package com.grimolizzi.demo.generics;
 
+import jakarta.transaction.Transactional;
 import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
@@ -23,6 +24,7 @@ public abstract class GenericService<T> {
     return this.repository.findById(id);
   }
 
+  @Transactional
   public T save(T t) {
     return this.repository.save(t);
   }

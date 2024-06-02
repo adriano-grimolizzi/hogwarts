@@ -32,8 +32,8 @@ public class HouseControllerTests {
 
   private final ArgumentCaptor<House> argumentCaptor = ArgumentCaptor.forClass(House.class);
 
-  private static final House gryffindor = new House("Gryffindor");
-  private static final House ravenclaw = new House("Ravenclaw");
+  private static final House gryffindor = new House(null, "Gryffindor", null);
+  private static final House ravenclaw = new House(null, "Ravenclaw", null);
 
   @Test
   void shouldGetAll() throws Exception {

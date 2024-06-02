@@ -1,5 +1,6 @@
 package com.grimolizzi.demo;
 
+import com.grimolizzi.demo.houses.House;
 import com.grimolizzi.demo.wizards.Wizard;
 import com.grimolizzi.demo.wizards.WizardRepository;
 import java.util.List;
@@ -15,13 +16,15 @@ public class Application {
   }
 
   @Bean
-  public CommandLineRunner commandLineRunner(WizardRepository wizardRepository) {
-    return (args -> {
-      var harry = new Wizard("Harry", "Potter");
-      var ron = new Wizard("Ronald", "Wesley");
-      var hermione = new Wizard("Hermione", "Granger");
+  public CommandLineRunner commandLineRunner(WizardRepository wizardRepo) {
+    return (_ -> {
+      var gryffindor = new House(null, "Gryffindor", null);
 
-      wizardRepository.saveAll(List.of(harry, ron, hermione));
+      var harry = new Wizard(null, "Harry", "Potter", gryffindor);
+      var ron = new Wizard(null, "Ronald", "Wesley", gryffindor);
+      var hermione = new Wizard(null, "Hermione", "Granger", gryffindor);
+
+      wizardRepo.saveAll(List.of(harry, ron, hermione));
     });
   }
 }

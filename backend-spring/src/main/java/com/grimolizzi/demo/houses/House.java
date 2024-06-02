@@ -32,8 +32,4 @@ public class House {
       mappedBy = "house",
       cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.DETACH, CascadeType.REFRESH})
   private List<Wizard> wizards;
-
-  public House(String name) {
-    this.name = name;
-  }
 }
