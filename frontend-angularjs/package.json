@@ -1,0 +1,21 @@
+{
+  "name": "frontend-angularjs",
+  "version": "1.0.0",
+  "description": "A tutorial application for AngularJS",
+  "author": "Adriano Grimolizzi",
+  "license": "ISC",
+  "scripts": {
+    "postinstall": "npm run copy-libs",
+    "copy-libs": "cpx \"node_modules/{angular,angular-*}/**/*\" app/lib -C",
+    "prestart": "yarn",
+    "start": "http-server ./app -a localhost -p 8000 -c-1",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "dependencies": {
+    "angular": "^1.8.3"
+  },
+  "devDependencies": {
+    "cpx": "^1.5.0",
+    "http-server": "^14.1.1"
+  }
+}

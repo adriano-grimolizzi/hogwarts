@@ -1,0 +1,19 @@
+<!doctype html>
+<html lang="en" ng-app="frontendAngularJs">
+
+<head>
+  <meta charset="utf-8">
+  <title>Hogwarts</title>
+  <script src="lib/angular/angular.js"></script>
+  <script src="app.js"></script>
+</head>
+
+<body ng-controller="WizardListController">
+  <ul>
+    <li ng-repeat="wizard in wizards">
+      <span>{{wizard.firstName}}</span>
+    </li>
+  </ul>
+</body>
+
+</html>
