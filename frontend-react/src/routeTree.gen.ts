@@ -15,6 +15,7 @@ import { createFileRoute } from '@tanstack/react-router'
 import { Route as rootRoute } from './routes/__root'
 import { Route as WizardsRouteImport } from './routes/wizards/route'
 import { Route as HousesRouteImport } from './routes/houses/route'
+import { Route as WizardsCreateImport } from './routes/wizards/create'
 import { Route as WizardsIdImport } from './routes/wizards/$id'
 
 // Create Virtual Routes
@@ -37,6 +38,11 @@ const IndexLazyRoute = IndexLazyImport.update({
   path: '/',
   getParentRoute: () => rootRoute,
 } as any).lazy(() => import('./routes/index.lazy').then((d) => d.Route))
+
+const WizardsCreateRoute = WizardsCreateImport.update({
+  path: '/create',
+  getParentRoute: () => WizardsRouteRoute,
+} as any)
 
 const WizardsIdRoute = WizardsIdImport.update({
   path: '/$id',
@@ -63,6 +69,10 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof WizardsIdImport
       parentRoute: typeof WizardsRouteImport
     }
+    '/wizards/create': {
+      preLoaderRoute: typeof WizardsCreateImport
+      parentRoute: typeof WizardsRouteImport
+    }
   }
 }
 
@@ -71,7 +81,7 @@ declare module '@tanstack/react-router' {
 export const routeTree = rootRoute.addChildren([
   IndexLazyRoute,
   HousesRouteRoute,
-  WizardsRouteRoute.addChildren([WizardsIdRoute]),
+  WizardsRouteRoute.addChildren([WizardsIdRoute, WizardsCreateRoute]),
 ])
 
 /* prettier-ignore-end */
