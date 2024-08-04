@@ -2,9 +2,8 @@
 /* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
-export type WizardDto = {
-  id?: string
-  firstName?: string
-  lastName?: string
-  house?: string
-}
+export type House = {
+    id?: string;
+    name?: string;
+};
+

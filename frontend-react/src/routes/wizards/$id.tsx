@@ -1,5 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router"
-import { WizardControllerService } from "../../services/openapi"
+import { WizardControllerService } from "../../openapi"
 import WizardDetail from "../../components/WizardDetail"
 
 export const Route = createFileRoute("/wizards/$id")({

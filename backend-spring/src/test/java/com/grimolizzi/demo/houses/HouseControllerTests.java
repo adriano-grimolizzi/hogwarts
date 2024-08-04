@@ -12,6 +12,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import java.util.List;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.mockito.ArgumentCaptor;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -36,6 +37,7 @@ public class HouseControllerTests {
   private static final House ravenclaw = new House(null, "Ravenclaw", null);
 
   @Test
+  @DisplayName("should get all houses")
   void shouldGetAll() throws Exception {
     when(houseService.findAll()).thenReturn(List.of(gryffindor, ravenclaw));
 
@@ -48,10 +50,13 @@ public class HouseControllerTests {
   }
 
   @Test
+  @DisplayName("should save house")
   void shouldSave() throws Exception {
-    var jsonBody = new ObjectMapper().writeValueAsString(gryffindor);
     this.mockMvc
-        .perform(post(URL_TEMPLATE).content(jsonBody).contentType(MediaType.APPLICATION_JSON))
+        .perform(
+            post(URL_TEMPLATE)
+                .content(new ObjectMapper().writeValueAsString(gryffindor))
+                .contentType(MediaType.APPLICATION_JSON))
         .andExpect(status().isCreated());
 
     verify(this.houseService).save(argumentCaptor.capture());

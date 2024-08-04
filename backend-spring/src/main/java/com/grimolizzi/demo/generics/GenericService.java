@@ -7,25 +7,25 @@ import java.util.UUID;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.jpa.repository.JpaRepository;
 
-public abstract class GenericService<T> {
+public class GenericService<E, R extends JpaRepository<E, UUID>> {
 
-  protected final JpaRepository<T, UUID> repository;
+  protected final R repository;
 
   @Autowired
-  public GenericService(JpaRepository<T, UUID> repository) {
+  public GenericService(R repository) {
     this.repository = repository;
   }
 
-  public List<T> findAll() {
+  public List<E> findAll() {
     return this.repository.findAll();
   }
 
-  public Optional<T> findById(UUID id) {
+  public Optional<E> findById(UUID id) {
     return this.repository.findById(id);
   }
 
   @Transactional
-  public T save(T t) {
-    return this.repository.save(t);
+  public E save(E entity) {
+    return this.repository.save(entity);
   }
 }

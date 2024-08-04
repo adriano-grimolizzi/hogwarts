@@ -33,8 +33,4 @@ public class Wizard {
       cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.DETACH, CascadeType.REFRESH})
   @JoinColumn(name = "house_id")
   private House house;
-
-  public Wizard(WizardDto wizardDto, House house) {
-    this(null, wizardDto.firstName(), wizardDto.lastName(), house);
-  }
 }

@@ -5,6 +5,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.util.List;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -21,6 +22,7 @@ public class WizardServiceTests {
   }
 
   @Test
+  @DisplayName("should find all wizards")
   void shouldFindAll() {
     repository.saveAll(
         List.of(
@@ -36,6 +38,7 @@ public class WizardServiceTests {
   }
 
   @Test
+  @DisplayName("should find wizard by ID")
   void shouldFindById() {
     var saved = repository.save(new Wizard(null, "Percy", "Weasley", null));
     var result = service.findById(saved.getId());
@@ -45,6 +48,7 @@ public class WizardServiceTests {
   }
 
   @Test
+  @DisplayName("should save wizard")
   void shouldSave() {
     var saved = service.save(new Wizard(null, "Penelope", "Clearwater", null));
     var result = repository.findById(saved.getId());

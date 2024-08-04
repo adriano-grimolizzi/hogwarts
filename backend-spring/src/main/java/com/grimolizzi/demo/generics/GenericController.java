@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -11,28 +12,31 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
 
-public class GenericController<T> {
+public class GenericController<
+    E, //
+    R extends JpaRepository<E, UUID>,
+    S extends GenericService<E, R>> {
 
-  protected final GenericService<T> service;
+  protected final S service;
 
   @Autowired
-  public GenericController(GenericService<T> service) {
+  public GenericController(S service) {
     this.service = service;
   }
 
   @GetMapping
-  public List<T> findAll() {
+  public List<E> findAll() {
     return this.service.findAll();
   }
 
-  @GetMapping("/{id}")
-  public Optional<T> findById(@PathVariable UUID id) {
+  @GetMapping("/id/{id}")
+  public Optional<E> findById(@PathVariable UUID id) {
     return this.service.findById(id);
   }
 
   @PostMapping
   @ResponseStatus(value = HttpStatus.CREATED)
-  public T save(@RequestBody T t) {
-    return this.service.save(t);
+  public E save(@RequestBody E entity) {
+    return this.service.save(entity);
   }
 }

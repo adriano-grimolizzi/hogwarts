@@ -12,9 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("/api/v1/houses")
 @CrossOrigin(origins = "http://localhost:3000")
-public class HouseController extends GenericController<House> {
-
-  private final HouseService houseService = (HouseService) super.service;
+public class HouseController extends GenericController<House, HouseRepository, HouseService> {
 
   @Autowired
   public HouseController(HouseService service) {
@@ -23,6 +21,6 @@ public class HouseController extends GenericController<House> {
 
   @GetMapping("/name/{name}")
   public Optional<House> findByName(@PathVariable String name) {
-    return this.houseService.findByName(name);
+    return super.service.findByName(name);
   }
 }

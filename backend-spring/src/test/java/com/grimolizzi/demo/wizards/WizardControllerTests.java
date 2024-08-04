@@ -14,6 +14,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.grimolizzi.demo.houses.House;
 import java.util.List;
 import java.util.UUID;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.mockito.ArgumentCaptor;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,13 +33,14 @@ public class WizardControllerTests {
   @Autowired private MockMvc mockMvc;
   @MockBean private WizardService wizardService;
 
-  private final ArgumentCaptor<WizardDto> argumentCaptor = ArgumentCaptor.forClass(WizardDto.class);
+  private final ArgumentCaptor<Wizard> argumentCaptor = ArgumentCaptor.forClass(Wizard.class);
 
   private static final House gryffindor = new House(null, "Gryffindor", null);
   private static final Wizard harry = new Wizard(UUID.randomUUID(), "Harry", "Potter", gryffindor);
   private static final Wizard ron = new Wizard(UUID.randomUUID(), "Ronald", "Weasley", gryffindor);
 
   @Test
+  @DisplayName("should get all wizards")
   void shouldGetAll() throws Exception {
     when(wizardService.findAll()).thenReturn(List.of(harry, ron));
 
@@ -51,17 +53,18 @@ public class WizardControllerTests {
   }
 
   @Test
+  @DisplayName("should save wizard")
   void shouldSave() throws Exception {
-    var dto = new WizardDto(UUID.randomUUID(), "Luna", "Lovegood", "Ravenclaw");
-    var jsonBody = new ObjectMapper().writeValueAsString(dto);
+    var wizard = new Wizard(null, "Luna", "Lovegood", null);
+
     this.mockMvc
         .perform(
-            post(STR."\{URL_TEMPLATE}/withHouse")
-                .content(jsonBody)
+            post(URL_TEMPLATE)
+                .content(new ObjectMapper().writeValueAsString(wizard))
                 .contentType(MediaType.APPLICATION_JSON))
         .andExpect(status().isCreated());
 
-    verify(this.wizardService).save(argumentCaptor.capture());
-    assertEquals("Luna", argumentCaptor.getValue().firstName());
+    verify(wizardService).save(argumentCaptor.capture());
+    assertEquals("Luna", argumentCaptor.getValue().getFirstName());
   }
 }

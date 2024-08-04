@@ -1,5 +1,5 @@
 import { Link } from "@tanstack/react-router"
-import type { Wizard } from "../services/openapi"
+import type { Wizard } from "../openapi"
 
 type DetailInfo = {
   id: number
@@ -7,17 +7,19 @@ type DetailInfo = {
   value?: string | number
 }
 
-const WizardDetail = ({ wizard }: { wizard: Wizard }) => {
+const WizardDetail = ({
+  wizard: { id, firstName, lastName, house },
+}: { wizard: Wizard }) => {
   const info = [
     {
       id: 1,
       label: "Name",
-      value: wizard.firstName,
+      value: firstName,
     },
     {
       id: 2,
       label: "Surname",
-      value: wizard.lastName,
+      value: lastName,
     },
     {
       id: 3,
@@ -27,14 +29,14 @@ const WizardDetail = ({ wizard }: { wizard: Wizard }) => {
     {
       id: 4,
       label: "House",
-      value: wizard.house?.name,
+      value: house?.name,
     },
   ]
 
   return (
     <div className="border rounded border-slate-400 m-1 px-2 min-w-48">
       {info.map((info: DetailInfo) => (
-        <Link key={info.id} className="flex" to={`/wizards/${wizard.id}`}>
+        <Link key={info.id} className="flex" to={`/wizards/${id}`}>
           <p className="text-slate-500 text-sm text-right px-1 min-w-20">
             {info.label}:
           </p>
