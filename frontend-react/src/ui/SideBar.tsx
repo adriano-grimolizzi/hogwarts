@@ -1,25 +1,38 @@
 import { Link } from "@tanstack/react-router"
+import { useTranslation } from "react-i18next"
 
-const SideBar = (): JSX.Element => (
-  <div className="flex flex-col px-3">
-    <Link data-testid="LINK_HOME" to="/" className="[&.active]:text-slate-400">
-      Home
-    </Link>
+const Sidebar = (): JSX.Element => {
+  const { t } = useTranslation()
+
+  type LinkInfo = {
+    label: string
+    path?: string
+  }
+
+  const links: Array<LinkInfo> = [
+    {
+      label: "home",
+      path: "/",
+    },
+    {
+      label: "wizards",
+    },
+    {
+      label: "houses",
+    },
+  ]
+
+  const toLink = (link: LinkInfo) => (
     <Link
-      data-testid="LINK_WIZARDS"
-      to="/wizards"
+      key={link.label}
+      to={link.path || `/${link.label}`}
       className="[&.active]:text-slate-400"
     >
-      Wizards
+      {t(`sidebar.${link.label}`, link.label)}
     </Link>
-    <Link
-      data-testid="LINK_HOUSES"
-      to="/houses"
-      className="[&.active]:text-slate-400"
-    >
-      Houses
-    </Link>
-  </div>
-)
+  )
 
-export default SideBar
+  return <div className="flex flex-col px-3 w-20">{links.map(toLink)}</div>
+}
+
+export default Sidebar

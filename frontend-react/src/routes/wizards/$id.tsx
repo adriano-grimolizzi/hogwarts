@@ -1,6 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router"
 import { WizardControllerService } from "../../openapi"
-import WizardDetail from "../../components/WizardDetail"
+import WizardDetail from "../../components/wizards/WizardDetail"
 
 export const Route = createFileRoute("/wizards/$id")({
   loader: async ({ params: { id } }) => WizardControllerService.findById(id),

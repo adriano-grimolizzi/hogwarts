@@ -1,0 +1,13 @@
+{
+  "translation": {
+    "sidebar": {
+      "home": "Home",
+      "houses": "Maisons",
+      "wizards": "Sorciers"
+    },
+    "wizards": {
+      "firstName": "Prenom",
+      "lastName": "Nom"
+    }
+  }
+}

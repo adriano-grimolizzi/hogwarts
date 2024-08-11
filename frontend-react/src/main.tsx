@@ -4,6 +4,7 @@ import { routeTree } from "./routeTree.gen"
 import { RouterProvider, createRouter } from "@tanstack/react-router"
 
 import "./index.css"
+import './i18n.js'
 
 // Create a new router instance
 const router = createRouter({ routeTree })

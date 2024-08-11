@@ -1,12 +1,14 @@
 import { createRootRoute, Outlet } from "@tanstack/react-router"
-import SideBar from "../ui/SideBar"
+
+import Header from "../ui/Header"
+import Sidebar from "../ui/Sidebar"
 
 export const Route = createRootRoute({
   component: () => (
     <>
-      <h1 className="bg-slate-400 text-slate-950 px-3 py-1 mb-1">Hogwarts</h1>
+      <Header />  
       <div className="flex flex-row">
-        <SideBar />
+        <Sidebar />
         <Outlet />
       </div>
     </>

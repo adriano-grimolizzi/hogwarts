@@ -1,5 +1,6 @@
 import { useForm } from "react-hook-form"
-import { type Wizard, WizardControllerService } from "../openapi"
+
+import { type Wizard, WizardControllerService } from "../../openapi"
 
 type FormValues = {
   firstName: string
