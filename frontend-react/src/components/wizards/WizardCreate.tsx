@@ -1,3 +1,4 @@
+import { useTranslation } from "react-i18next"
 import { useForm } from "react-hook-form"
 
 import { type Wizard, WizardControllerService } from "../../openapi"
@@ -8,6 +9,8 @@ type FormValues = {
 }
 
 const WizardCreate = () => {
+  const { t } = useTranslation()
+
   const { register, handleSubmit } = useForm<FormValues>()
 
   const onSubmit = (d: Wizard) => {
@@ -18,12 +21,12 @@ const WizardCreate = () => {
     <div className="border rounded border-slate-400 m-1 p-1">
       <form onSubmit={handleSubmit(onSubmit)}>
         <label>
-          First Name
+          {t("wizards.firstName", "Name")}
           <input className="text-black m-1 p-1" {...register("firstName")} />
         </label>
         <br />
         <label>
-          Last Name
+          {t("wizards.lastName", "Surname")}
           <input className="text-black m-1 p-1" {...register("lastName")} />
         </label>
         <br />

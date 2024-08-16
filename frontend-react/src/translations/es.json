@@ -1,0 +1,14 @@
+{
+  "translation": {
+    "switch theme": "Cambiar tema",
+    "sidebar": {
+      "home": "Home",
+      "houses": "Casas",
+      "wizards": "Magos"
+    },
+    "wizards": {
+      "firstName": "Nombre",
+      "lastName": "Apellido"
+    }
+  }
+}

@@ -9,7 +9,7 @@ const WizardDetail = ({ wizard }: { wizard: Wizard }) => {
 
   const toLink = (info: keyof Wizard) => (
     <div className="flex p-1" key={info}>
-      <p className="text-slate-500 w-24">{t(`wizards.${info}`, info)}:</p>
+      <p className="text-slate-500 w-20">{t(`wizards.${info}`, info)}:</p>
       <p>{wizard[info] as string}</p>
     </div>
   )

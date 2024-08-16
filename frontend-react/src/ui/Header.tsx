@@ -1,23 +1,22 @@
-import i18next from "i18next"
+import { useTranslation } from "react-i18next"
 
-const Header = () => {
-  const languages = ["en", "fr", "it"]
+import LanguageButton from "./LanguageButton"
 
-  const toButton = (language: string) => (
-    <button
-      key={language}
-      type="submit"
-      onClick={() => i18next.changeLanguage(language)}
-    >
-      {language.toUpperCase()}
-    </button>
-  )
+const Header = ({ switchTheme }: { switchTheme: () => void }) => {
+  const { t } = useTranslation()
+
+  const languages = ["en", "it", "fr", 'es']
 
   return (
     <div className="flex justify-between bg-slate-400 text-slate-950 px-3 py-1 mb-1">
-      <h1>Hogwarts</h1>
-      <div className="flex gap-2" key={i18next.language}>
-        {languages.map(toButton)}
+      <h1 className="select-none">{t("title", "Hogwarts")}</h1>
+      <div className="flex gap-2">
+        <button type="submit" onClick={switchTheme}>
+          {t("switch theme", "Switch theme")}
+        </button>
+        {languages.map((language) => (
+          <LanguageButton language={language} key={language} />
+        ))}
       </div>
     </div>
   )

@@ -1,5 +1,7 @@
 {
   "translation": {
+    "title": "Poudlard",
+    "switch theme": "Modifier le thème",
     "sidebar": {
       "home": "Home",
       "houses": "Maisons",
