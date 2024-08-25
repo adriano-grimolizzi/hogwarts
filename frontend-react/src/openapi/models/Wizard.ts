@@ -7,6 +7,8 @@ export type Wizard = {
     id?: string;
     firstName?: string;
     lastName?: string;
+    birthDate?: string;
+    email?: string;
     house?: House;
 };
 

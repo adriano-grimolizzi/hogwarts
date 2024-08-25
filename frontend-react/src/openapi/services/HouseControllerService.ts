@@ -11,7 +11,7 @@ export class HouseControllerService {
      * @returns House OK
      * @throws ApiError
      */
-    public static findAll1(): CancelablePromise<Array<House>> {
+    public static getAll1(): CancelablePromise<Array<House>> {
         return __request(OpenAPI, {
             method: 'GET',
             url: '/api/v1/houses',
@@ -53,11 +53,27 @@ export class HouseControllerService {
      * @returns House OK
      * @throws ApiError
      */
-    public static findById1(
+    public static getById1(
         id: string,
     ): CancelablePromise<House> {
         return __request(OpenAPI, {
             method: 'GET',
+            url: '/api/v1/houses/id/{id}',
+            path: {
+                'id': id,
+            },
+        });
+    }
+    /**
+     * @param id
+     * @returns any OK
+     * @throws ApiError
+     */
+    public static delete1(
+        id: string,
+    ): CancelablePromise<any> {
+        return __request(OpenAPI, {
+            method: 'DELETE',
             url: '/api/v1/houses/id/{id}',
             path: {
                 'id': id,

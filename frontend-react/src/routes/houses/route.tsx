@@ -3,6 +3,6 @@ import WizardTable from "../../components/tables/WizardTable"
 import { WizardControllerService } from "../../openapi"
 
 export const Route = createFileRoute("/houses")({
-  loader: WizardControllerService.findAll,
+  loader: WizardControllerService.getAll,
   component: () => <WizardTable wizards={Route.useLoaderData()} />,
 })

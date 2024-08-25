@@ -9,7 +9,8 @@
     },
     "wizards": {
       "firstName": "Nome",
-      "lastName": "Cognome"
+      "lastName": "Cognome",
+      "email": "Email"
     }
   }
 }

@@ -3,7 +3,7 @@ import { WizardControllerService } from "../../openapi"
 import WizardList from "../../components/wizards/WizardList"
 
 export const Route = createFileRoute("/wizards")({
-  loader: WizardControllerService.findAll,
+  loader: WizardControllerService.getAll,
   component: () => (
     <div className="p-2 flex">
       <WizardList wizards={Route.useLoaderData()} />

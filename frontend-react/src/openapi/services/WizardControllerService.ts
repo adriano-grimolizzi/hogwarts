@@ -11,7 +11,7 @@ export class WizardControllerService {
      * @returns Wizard OK
      * @throws ApiError
      */
-    public static findAll(): CancelablePromise<Array<Wizard>> {
+    public static getAll(): CancelablePromise<Array<Wizard>> {
         return __request(OpenAPI, {
             method: 'GET',
             url: '/api/v1/wizards',
@@ -37,11 +37,27 @@ export class WizardControllerService {
      * @returns Wizard OK
      * @throws ApiError
      */
-    public static findById(
+    public static getById(
         id: string,
     ): CancelablePromise<Wizard> {
         return __request(OpenAPI, {
             method: 'GET',
+            url: '/api/v1/wizards/id/{id}',
+            path: {
+                'id': id,
+            },
+        });
+    }
+    /**
+     * @param id
+     * @returns any OK
+     * @throws ApiError
+     */
+    public static delete(
+        id: string,
+    ): CancelablePromise<any> {
+        return __request(OpenAPI, {
+            method: 'DELETE',
             url: '/api/v1/wizards/id/{id}',
             path: {
                 'id': id,
