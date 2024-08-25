@@ -9,7 +9,15 @@
     "wizards": {
       "firstName": "Name",
       "lastName": "Surname",
-      "email": "Email"
+      "email": "Email",
+      "errors": {
+        "firstName": {
+          "String must contain at least 1 character(s)": "Name can't be null"
+        },
+        "lastName": {
+          "String must contain at least 1 character(s)": "Surname can't be null"
+        }        
+      }
     }
   }
 }

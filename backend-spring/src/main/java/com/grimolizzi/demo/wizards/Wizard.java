@@ -9,6 +9,8 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
+
+import java.util.Date;
 import java.util.UUID;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -28,6 +30,12 @@ public class Wizard {
 
   @Column(name = "last_name")
   private String lastName;
+
+  @Column(name = "birthDate")
+  private Date birthDate;
+
+  @Column(name = "email")
+  private String email;
 
   @ManyToOne(
       cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.DETACH, CascadeType.REFRESH})

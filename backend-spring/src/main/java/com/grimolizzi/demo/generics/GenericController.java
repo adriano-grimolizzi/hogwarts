@@ -6,6 +6,7 @@ import java.util.UUID;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.http.HttpStatus;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -25,12 +26,12 @@ public class GenericController<
   }
 
   @GetMapping
-  public List<E> findAll() {
+  public List<E> getAll() {
     return this.service.findAll();
   }
 
   @GetMapping("/id/{id}")
-  public Optional<E> findById(@PathVariable UUID id) {
+  public Optional<E> getById(@PathVariable UUID id) {
     return this.service.findById(id);
   }
 
@@ -38,5 +39,10 @@ public class GenericController<
   @ResponseStatus(value = HttpStatus.CREATED)
   public E save(@RequestBody E entity) {
     return this.service.save(entity);
+  }
+
+  @DeleteMapping("/id/{id}")
+  public void delete(@PathVariable UUID id) {
+    this.service.delete(id);
   }
 }

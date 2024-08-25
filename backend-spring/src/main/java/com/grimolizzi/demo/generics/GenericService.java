@@ -28,4 +28,9 @@ public class GenericService<E, R extends JpaRepository<E, UUID>> {
   public E save(E entity) {
     return this.repository.save(entity);
   }
+
+  @Transactional
+  public void delete(UUID id) {
+    this.repository.deleteById(id);
+  }
 }

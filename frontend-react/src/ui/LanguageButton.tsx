@@ -1,3 +1,4 @@
+import { Button } from "@/components/ui/button"
 import { useTranslation } from "react-i18next"
 
 const LanguageButton = ({ language }: { language: string; key: string }) => {
@@ -6,13 +7,13 @@ const LanguageButton = ({ language }: { language: string; key: string }) => {
   const isActive = i18n.language === language
 
   return (
-    <button
-      className={isActive ? "text-slate-500" : ""}
-      type="submit"
+    <Button
+      variant="ghost"
+      className={`p-2 ${isActive && "text-slate-500"}`}
       onClick={() => i18n.changeLanguage(language)}
     >
       {language.toUpperCase()}
-    </button>
+    </Button>
   )
 }
 

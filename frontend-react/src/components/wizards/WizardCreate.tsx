@@ -1,30 +1,37 @@
 import { useTranslation } from "react-i18next"
 import { useForm } from "react-hook-form"
+import { zodResolver } from "@hookform/resolvers/zod"
 
 import { type Wizard, WizardControllerService } from "../../openapi"
-
-type FormValues = {
-  firstName: string
-  lastName: string
-  email: string
-}
+import { type WizardSchema, wizardSchema } from "./create/WizardSchema"
+ 
 
 const WizardCreate = () => {
   const { t } = useTranslation()
 
-  const { register, handleSubmit } = useForm<FormValues>()
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm<WizardSchema>({ resolver: zodResolver(wizardSchema), })
 
   const onSubmit = (wizard: Wizard) => {
     WizardControllerService.save(wizard)
   }
 
-  const infos: Array<keyof FormValues> = ['firstName', 'lastName', 'email']
+  const infos: Array<keyof WizardSchema> = [
+    "firstName",
+    "lastName",
+    "email",
+  ]
 
-  const toInput = (info: keyof FormValues) => (
-    <label>
-      {t(`wizards.${info}`, info)}
+  const toInput = (info: keyof WizardSchema) => (
+    <div className="flex">
+      <label className="w-24">{t(`wizards.${info}`, info)}</label>
       <input className="text-black m-1 p-1" {...register(info)} />
-    </label>
+      {errors[info] && <p className="text-red-500">
+        {t(`wizards.errors.${errors[info]?.message}`)}</p>}
+    </div>
   )
 
   return (
