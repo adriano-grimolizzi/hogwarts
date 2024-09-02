@@ -8,5 +8,5 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface WizardRepository extends JpaRepository<Wizard, UUID> {
 
-  List<Wizard> findByHouseName(String house);
+  List<Wizard> findByHouseNameIgnoreCase(String house);
 }

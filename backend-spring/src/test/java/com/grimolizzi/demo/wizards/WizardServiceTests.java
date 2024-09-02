@@ -10,7 +10,8 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
-@SpringBootTest
+@SpringBootTest(classes = WizardService.class)
+@DisplayName("Wizard Service")
 public class WizardServiceTests {
 
   @Autowired WizardService service;
@@ -26,9 +27,9 @@ public class WizardServiceTests {
   void shouldFindAll() {
     repository.saveAll(
         List.of(
-            new Wizard(null, "Harry", "Potter", null),
-            new Wizard(null, "Ronald", "Weasley", null),
-            new Wizard(null, "Hermione", "Granger", null)));
+            new Wizard("Harry", "Potter"),
+            new Wizard("Ronald", "Weasley"),
+            new Wizard("Hermione", "Granger")));
 
     var result = service.findAll();
     assertEquals(3, result.size());
@@ -40,7 +41,7 @@ public class WizardServiceTests {
   @Test
   @DisplayName("should find wizard by ID")
   void shouldFindById() {
-    var saved = repository.save(new Wizard(null, "Percy", "Weasley", null));
+    var saved = repository.save(new Wizard("Percy", "Weasley"));
     var result = service.findById(saved.getId());
 
     assertTrue(result.isPresent());
@@ -50,7 +51,7 @@ public class WizardServiceTests {
   @Test
   @DisplayName("should save wizard")
   void shouldSave() {
-    var saved = service.save(new Wizard(null, "Penelope", "Clearwater", null));
+    var saved = service.save(new Wizard("Penelope", "Clearwater"));
     var result = repository.findById(saved.getId());
 
     assertTrue(result.isPresent());

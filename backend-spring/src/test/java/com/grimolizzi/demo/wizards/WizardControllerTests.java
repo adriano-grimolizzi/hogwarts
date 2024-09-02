@@ -11,12 +11,11 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.grimolizzi.demo.houses.House;
 import java.util.List;
-import java.util.UUID;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.mockito.ArgumentCaptor;
+import org.mockito.Captor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
@@ -26,6 +25,7 @@ import org.springframework.test.web.servlet.MockMvc;
 
 @WebMvcTest
 @ContextConfiguration(classes = WizardController.class)
+@DisplayName("Wizard Controller")
 public class WizardControllerTests {
 
   private static final String URL_TEMPLATE = "/api/v1/wizards";
@@ -33,11 +33,10 @@ public class WizardControllerTests {
   @Autowired private MockMvc mockMvc;
   @MockBean private WizardService wizardService;
 
-  private final ArgumentCaptor<Wizard> argumentCaptor = ArgumentCaptor.forClass(Wizard.class);
+  @Captor private ArgumentCaptor<Wizard> argumentCaptor;
 
-  private static final House gryffindor = new House(null, "Gryffindor", null);
-  private static final Wizard harry = new Wizard(UUID.randomUUID(), "Harry", "Potter", gryffindor);
-  private static final Wizard ron = new Wizard(UUID.randomUUID(), "Ronald", "Weasley", gryffindor);
+  private static final Wizard harry = new Wizard("Harry", "Potter");
+  private static final Wizard ron = new Wizard("Ronald", "Weasley");
 
   @Test
   @DisplayName("should get all wizards")
@@ -55,7 +54,7 @@ public class WizardControllerTests {
   @Test
   @DisplayName("should save wizard")
   void shouldSave() throws Exception {
-    var wizard = new Wizard(null, "Luna", "Lovegood", null);
+    var wizard = new Wizard("Luna", "Lovegood");
 
     this.mockMvc
         .perform(

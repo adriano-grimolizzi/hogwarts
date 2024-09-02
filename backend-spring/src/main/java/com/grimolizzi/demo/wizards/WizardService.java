@@ -14,6 +14,6 @@ public class WizardService extends GenericService<Wizard, WizardRepository> {
   }
 
   public List<Wizard> findByHouse(String house) {
-    return super.repository.findByHouseName(house);
+    return super.repository.findByHouseNameIgnoreCase(house);
   }
 }

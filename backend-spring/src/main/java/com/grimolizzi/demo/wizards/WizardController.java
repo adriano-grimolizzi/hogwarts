@@ -14,9 +14,16 @@ import org.springframework.web.bind.annotation.RestController;
 @CrossOrigin(origins = "http://localhost:3000")
 public class WizardController extends GenericController<Wizard, WizardRepository, WizardService> {
 
+  private static final WizardMapper mapper = WizardMapper.INSTANCE;
+
   @Autowired
   public WizardController(WizardService service) {
     super(service);
+  }
+
+  @GetMapping("/summary")
+  public List<WizardSummary> get() {
+    return super.getAll().stream().map(mapper::toSummary).toList();
   }
 
   @GetMapping("/house/{houseName}")

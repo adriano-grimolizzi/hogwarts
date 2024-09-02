@@ -15,6 +15,7 @@ import java.util.List;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.mockito.ArgumentCaptor;
+import org.mockito.Captor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
@@ -24,6 +25,7 @@ import org.springframework.test.web.servlet.MockMvc;
 
 @WebMvcTest
 @ContextConfiguration(classes = HouseController.class)
+@DisplayName("House Controller")
 public class HouseControllerTests {
 
   private static final String URL_TEMPLATE = "/api/v1/houses";
@@ -31,10 +33,10 @@ public class HouseControllerTests {
   @Autowired private MockMvc mockMvc;
   @MockBean private HouseService houseService;
 
-  private final ArgumentCaptor<House> argumentCaptor = ArgumentCaptor.forClass(House.class);
+  @Captor private ArgumentCaptor<House> argumentCaptor;
 
-  private static final House gryffindor = new House(null, "Gryffindor", null);
-  private static final House ravenclaw = new House(null, "Ravenclaw", null);
+  private static final House gryffindor = new House("Gryffindor");
+  private static final House ravenclaw = new House("Ravenclaw");
 
   @Test
   @DisplayName("should get all houses")
